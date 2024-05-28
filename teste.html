@@ -1,0 +1,225 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: true
+-->
+<!doctype html>
+<html lang="pt-br" data-bs-theme="dark">
+  <head>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta charset="utf-8">
+
+    {% if content.html_title %}<title>{{ content.html_title }}</title>{% endif %}
+    <meta name="description" content="{{ content.meta_description }}">
+    {% if brand_settings.primaryFavicon.src %}
+      <link rel="shortcut icon" href="{{ brand_settings.primaryFavicon.src }}" />
+    {% endif %}
+    {{ standard_header_includes }}
+
+  </head>
+  <!--
+   ----------------------------------------------------------------------------------------------
+-->
+  
+  <body >
+   
+
+    <div class="container">
+      
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+ 
+    {% dnd_area "dnd_area"
+      label="Main section"
+    %}
+
+    {% end_dnd_area %}
+
+    {{ standard_footer_includes }}
+   
+
+    
+    <main >
+      
+    <!--
+   -----------------------------formulario de deals com google appscript----------------------------------------------------------
+-->
+      
+<div class="row g-4"> 
+ <div class="col-s-1 ">
+        
+
+         <h3>   Deal </h3>
+            <form id="formulario">
+            <div class="mb-3">
+              <label for="dealName" class="form-label">Deal name</label>
+              <input type="text" class="form-control" id="dealName" name="dealName" placeholder="Deal name">
+            </div>
+            <div class="mb-3">
+              <label for="licencas" class="form-label">Quantidade de Licenças</label>
+              <input type="number" class="form-control" id="licencas" name="licencas" placeholder="Quantidade de licenças">
+            </div>
+            <div class="mb-3">
+              <label for="tipoLicenca" class="form-label">Tipo de Licença</label>
+              <input class="form-control" list="datalistOptions" id="tipoLicenca" name="tipoLicenca" placeholder="tipo de licença">
+              <datalist id="datalistOptions">
+                <option value="Starter">
+                <option value="Standard">
+                <option value="Plus">
+                <option value="Enterprise">
+              </datalist>
+            </div>
+            <div class="mb-3">
+              <label for="classificacao" class="form-label">Classificação</label>
+              <input type="text" id="classificacao" name="classificacao" class="form-control" placeholder="Classificação">
+            </div>
+            <div class="mb-3">
+              <label for="pontosTotais" class="form-label">Pontos Totais</label>
+              <input type="text" id="pontosTotais" name="pontosTotais" class="form-control" placeholder="Pontos totais">
+            </div>
+            <div class="mb-3">
+              <input class="btn btn-warning" type="submit" value="Registrar">
+              <button class="btn btn-primary" type="button" onclick="limparFormulario()">Limpar</button>
+            </div>
+          </form>
+   
+   </div>
+  
+    <!--
+   -----------------------------mostra o nivel mais próximo ----------------------------------------------------------
+-->
+      
+
+  <div class="col">
+         <h3 >Nível mais próximo </h3>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Total de licenças">
+            </div>
+   
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Quantidade que falta">
+            </div>
+   
+        <label for="Tipo de licença" class="form-label"></label>
+                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="tipo de licença">
+                    <datalist id="datalistOptions">
+                           <option value="Starter">
+                           <option value="Standard">
+                           <option value="Plus">
+                           <option value="Enterprise">
+                    </datalist>
+   
+          <div class="mb-3">
+              <label for="disabledTextInput" class="form-label"></label>
+              <input type="text" id="disabledTextInput" class="form-control" placeholder="Classificação">
+          </div>
+      
+         <div class="mb-3">
+            <label for="disabledTextInput" class="form-label"></label>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="Pontos totais">
+         </div>
+</div>
+ 
+      
+        <!--
+   ----------------------------- mostra a sugestão para o cliente ----------------------------------------------------------
+-->
+      
+
+ <div class="col">
+   
+
+      <h3> Sugestão </h3>
+      
+             <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label"></label>
+                  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Total de licenças">
+            </div>
+  
+            <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label"></label>
+                  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Quantidade que falta">
+            </div>
+  
+              <label for="Tipo de licença" class="form-label"></label>
+                  <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="tipo de licença">
+                    <datalist id="datalistOptions">
+                               <option value="Starter">
+                               <option value="Standard">
+                              <option value="Plus">
+                               <option value="Enterprise">
+                    </datalist>
+  
+          <div class="mb-3">
+              <label for="disabledTextInput" class="form-label"></label>
+              <input type="text" id="disabledTextInput" class="form-control" placeholder="Classificação">
+          </div>
+      
+         <div class="mb-3">
+              <label for="disabledTextInput" class="form-label"></label>
+              <input type="text" id="disabledTextInput" class="form-control" placeholder="Pontos totais">
+         </div>
+      
+
+ </div>
+   </div>
+        <!--
+   -----------------------------insere as informações de quem está preenchendo ----------------------------------------------------------
+-->
+      
+
+ <div class="row g-4">
+   <h3>  Insira seus dados  </h3>
+   
+  
+     
+  <div class=" col mb-3">
+          <label for="exampleFormControlInput1" class="form-label"></label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Informações do deal">
+  </div>
+        <div class="col mb-3">
+              <label for="exampleFormControlInput1" class="form-label"></label>
+              <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="Responsável">
+        </div>
+  
+        <div class="col mb-3">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="Prioridade">
+        </div>
+              <div class="col mb-3">
+              <label for="exampleFormControlInput1" class="form-label"></label>
+              <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="Empresa">
+          
+        </div> 
+</div>
+
+  <script>
+    const scriptGoogle = 'https://script.google.com/macros/s/AKfycbxWevghi_7f2Hv_DcA18K1KMBcqXqrkbXwvH0YUPutAi_lPZQVfM1JH8DuNP_oR5vUYpA/exec';
+    const dadosForm = document.getElementById('formulario');
+
+    dadosForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      fetch(scriptGoogle, { method: 'POST', body: new FormData(dadosForm) })
+        .then(response => {
+          alert("Dados enviados com sucesso.");
+          dadosForm.reset();
+        })
+        .catch(error => console.error("Erro", error));
+    });
+
+    function limparFormulario() {
+      document.getElementById('formulario').reset();
+    }
+  </script>    
+  
+    </main>
+   <footer>
+           
+  </footer>
+    
+      
+      
+</div>
+  </body>
+</html>
