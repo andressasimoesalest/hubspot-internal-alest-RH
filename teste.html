@@ -1,295 +1,284 @@
-<!--
-    templateType: page
-    isAvailableForNewContent: true
--->
 <!doctype html>
-
-<html lang="pt-br" data-bs-theme="dark">
-  <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<html lang="pt-br">
+<head>
     <meta charset="utf-8">
-    {% if content.html_title %}<title>{{ content.html_title }}</title>{% endif %}
-    <meta name="description" content="{{ content.meta_description }}">
-    {% if brand_settings.primaryFavicon.src %}
-      <link rel="shortcut icon" href="{{ brand_settings.primaryFavicon.src }}" />
-    {% endif %}
-    {{ standard_header_includes }}
-  </head>
-  <body>
-    {% dnd_area "dnd_area"
-      label="Main section"
-    %}
-
-    {% end_dnd_area %}
-    {{ standard_footer_includes }}<!doctype html>
-    <div class="container">
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-
-      <main>
-        <div class="row g-5">
-          <div class="col-s-1 row justify-content-center m-5">
-            <center><h3>Deal</h3></center>
-            <form class="w-50" id="formulario">
-              <div>
-                <div class="col mb-3">
-                  <label for="dealName" class="form-label">Deal Name</label>
-                  <input type="text" class="form-control" id="dealName" name="dealName" placeholder="Deal name">
-                </div>
-                <div class="col mb-3">
-                  <label for="licencas" class="form-label">Quantidade de Licenças</label>
-                  <input type="number" class="form-control" id="licencas" name="licencas" placeholder="Quantidade de licenças">
-                </div>
-                <div class="col mb-3">
-                  <label for="tipoLicenca" class="form-label">Tipo de Licença</label>
-                  <select class="form-select" id="tipoLicenca" name="tipoLicenca" aria-label="Tipo de Licença">
-                    <option selected>Tipo de licença</option>
-                    <option value="Starter">Starter</option>
-                    <option value="Standard">Standard</option>
-                    <option value="Plus">Plus</option>
-                    <option value="Enterprise">Enterprise</option>
-                  </select>
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="classificacao" class="form-label">Classificação</label>
-                <input type="text" id="classificacao" name="classificacao" class="form-control" placeholder="Classificação" readonly>
-        
-              </div>
-              <div class="mb-3">
-                <label for="pontosTotais" class="form-label">Pontos Totais</label>
-                <input type="text" id="pontosTotais" name="pontosTotais" class="form-control" placeholder="Pontos totais" readonly>
-              </div>
-              <div class="mb-3">
-                <button class="btn btn-warning" type="submit">Calcular</button>
-                <button class="btn btn-primary" type="button" onclick="limparFormulario()">Limpar</button>
-              </div>
-            </form>
-          </div>
-
-          <div class="col">
-            <h3>Próxima Classificação</h3>
-            <div class="mb-3">
-              <label for="totalLicencas" class="form-label">Total de licenças</label>
-              <input type="number" class="form-control" id="totalLicencas" placeholder="Total de licenças" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="faltamLicencas" class="form-label">Quantidade que falta</label>
-              <input type="number" class="form-control" id="faltamLicencas" placeholder="Quantidade que falta" readonly>
-            </div>
-            <label for="tipoLicencaMaisProxima" class="form-label">Tipo de licença</label>
-            <input class="form-control" list="datalistOptions" id="tipoLicencaMaisProxima" placeholder="Tipo de licença" readonly>
-            <datalist id="datalistOptions">
-              <option value="Starter">
-              <option value="Standard">
-              <option value="Plus">
-              <option value="Enterprise">
-            </datalist>
-            <div class="mb-3">
-              <label for="classificacaoMaisProxima" class="form-label">Classificação</label>
-              <input type="text" id="classificacaoMaisProxima" class="form-control" placeholder="Classificação" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="pontosTotaisMaisProxima" class="form-label">Pontos totais</label>
-              <input type="text" id="pontosTotaisMaisProxima" class="form-control" placeholder="Pontos totais" readonly>
-            </div>
-          </div>
-
-          <div class="col">
-            <h3>Mescla com outras Licensas</h3>
-            <div class="mb-3">
-              <label for="sugestaoTotalLicencas" class="form-label">Total de licenças</label>
-              <input type="number" class="form-control" id="sugestaoTotalLicencas" placeholder="Total de licenças" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="sugestaoFaltamLicencas" class="form-label">Quantidade que falta</label>
-              <input type="number" class="form-control" id="sugestaoFaltamLicencas" placeholder="Quantidade que falta" readonly>
-            </div>
-            <label for="sugestaoTipoLicenca" class="form-label">Tipo de licença</label>
-            <input class="form-control" list="datalistOptions" id="sugestaoTipoLicenca" placeholder="Tipo de licença" readonly>
-            <datalist id="datalistOptions">
-              <option value="Starter">
-              <option value="Standard">
-              <option value="Plus">
-              <option value="Enterprise">
-            </datalist>
-            <div class="mb-3">
-              <label for="sugestaoClassificacao" class="form-label">Classificação</label>
-              <input type="text" id="sugestaoClassificacao" class="form-control" placeholder="Classificação"readonly>
-            </div>
-            <div class="mb-3">
-              <label for="sugestaoPontosTotais" class="form-label">Pontos totais</label>
-              <input type="text" id="sugestaoPontosTotais" class="form-control" placeholder="Pontos totais" readonly>
-            </div>
-          </div>
-        </div>
-
-        <div class="row g-4">
-          <h3>Insira seus dados</h3>
-          <div class="col mb-3">
-            <label for="informacoesDeal" class="form-label">Informações do deal</label>
-            <input type="text" class="form-control" id="informacoesDeal" placeholder="Informações do deal">
-          </div>
-          <div class="col mb-3">
-            <label for="responsavel" class="form-label">Responsável</label>
-            <input type="text" class="form-control" id="responsavel" placeholder="Responsável">
-          </div>
-          <div class="col mb-3">
-            <label for="prioridade" class="form-label">Prioridade</label>
-            <input type="text" class="form-control" id="prioridade" placeholder="Prioridade">
-          </div>
-          <div class="col mb-3">
-            <label for="empresa" class="form-label">Empresa</label>
-            <input type="text" class="form-control" id="empresa" placeholder="Empresa">
-          </div>
-        </div>
-
-        <script>
-          document.getElementById('formulario').addEventListener('submit', function(event) {
-            event.preventDefault(); // Previne o envio do formulário
-
-            // Obtendo os valores dos campos do formulário
-            const dealName = document.getElementById('dealName').value;
-            const licencas = document.getElementById('licencas').value;
-            const tipoLicenca = document.getElementById('tipoLicenca').value;
-            const classificacao = document.getElementById('classificacao').value;
-            const pontosTotais = document.getElementById('pontosTotais').value;
-
-
-
-            // Exemplo de cálculo (ajuste conforme necessário)
-            let totalLicencas = parseInt(licencas);
-            let licencasNecessarias = 0;
-            let proximoNivel = '';
-            
-            if (tipoLicenca == "Starter"){
-                if (totalLicencas <= 40){
-                    licencasNecessarias = 41 - totalLicencas;
-                    proximoNivel = 'Prata';
-                    document.getElementById('classificacao').value = "Bronze";
-                    document.getElementById('pontosTotais').value = licencas*10;
-                }
-                else if (totalLicencas <= 60){
-                    licencasNecessarias = 61 - totalLicencas;
-                    proximoNivel = 'Ouro';
-                    document.getElementById('classificacao').value = "Prata";
-                    document.getElementById('pontosTotais').value = licencas*10;
-                }
-                else{
-                    licencasNecessarias = 0 - totalLicencas;
-                    proximoNivel = 'Ouro';
-                    document.getElementById('classificacao').value = "Ouro";
-                    document.getElementById('pontosTotais').value = licencas*10;
-                }
-            }
-
-            else if (tipoLicenca == "Standard"){
-                if (totalLicencas <= 35){
-                    licencasNecessarias = 36 - totalLicencas;
-                    proximoNivel = 'Prata';
-                    document.getElementById('classificacao').value = "Bronze";
-                    document.getElementById('pontosTotais').value = licencas*15;
-                }
-                else if (totalLicencas <= 55){
-                    licencasNecessarias = 56 - totalLicencas;
-                    proximoNivel = 'Ouro';
-                    document.getElementById('classificacao').value = "Prata";
-                    document.getElementById('pontosTotais').value = licencas*15;
-                }
-                else{
-                    licencasNecessarias = 0 - totalLicencas;
-                    proximoNivel = 'Ouro';
-                    document.getElementById('classificacao').value = "Ouro";
-                    document.getElementById('pontosTotais').value = licencas*15;
-                }
-            }
-
-            else if (tipoLicenca == "Plus"){
-                if (totalLicencas <= 30){
-                    licencasNecessarias = 31 - totalLicencas;
-                    proximoNivel = 'Prata';
-                    document.getElementById('classificacao').value = "Bronze";
-                    document.getElementById('pontosTotais').value = licencas*20;
-                }
-                else if (totalLicencas <= 50){
-                    licencasNecessarias = 51 - totalLicencas;
-                    proximoNivel = 'Ouro';
-                    document.getElementById('classificacao').value = "Prata";
-                    document.getElementById('pontosTotais').value = licencas*20;
-                }
-                else{
-                    licencasNecessarias = 0 - totalLicencas;
-                    proximoNivel = 'Ouro';
-                    document.getElementById('classificacao').value = "Ouro";
-                    document.getElementById('pontosTotais').value = licencas*20;
-                }
-            }
-
-            else if (tipoLicenca == "Starter"){
-                if (totalLicencas <= 25){
-                    licencasNecessarias = 26 - totalLicencas;
-                    proximoNivel = 'Prata';
-                    document.getElementById('classificacao').value = "Bronze";
-                    document.getElementById('pontosTotais').value = licencas*25;
-                }
-                else if (totalLicencas <= 45){
-                    licencasNecessarias = 56 - totalLicencas;
-                    proximoNivel = 'Ouro';
-                    document.getElementById('classificacao').value = "Prata";
-                    document.getElementById('pontosTotais').value = licencas*80;
-                }
-                else{
-                    licencasNecessarias = 0 - totalLicencas;
-                    proximoNivel = 'Ouro';
-                    document.getElementById('classificacao').value = "Ouro";
-                    document.getElementById('pontosTotais').value = licencas*80;
-                }
-            }
-
-
-            // Atualizando os campos com os resultados do cálculo
-            document.getElementById('totalLicencas').value = totalLicencas + licencasNecessarias;
-            document.getElementById('faltamLicencas').value = licencasNecessarias;
-            document.getElementById('tipoLicencaMaisProxima').value = tipoLicenca;
-            document.getElementById('classificacaoMaisProxima').value = proximoNivel;
-            document.getElementById('pontosTotaisMaisProxima').value = (totalLicencas + licencasNecessarias) * 15;
-
-            document.getElementById('sugestaoTotalLicencas').value = totalLicencas;
-            document.getElementById('sugestaoFaltamLicencas').value = licencasNecessarias;
-            document.getElementById('sugestaoTipoLicenca').value = tipoLicenca;
-            document.getElementById('sugestaoClassificacao').value = proximoNivel;
-            document.getElementById('sugestaoPontosTotais').value = pontosTotais;
-
-            // Fazendo algo com os valores, como enviar para um servidor ou manipular localmente
-            console.log('Deal Name:', dealName);
-            console.log('Quantidade de Licenças:', licencas);
-            console.log('Tipo de Licença:', tipoLicenca);
-            console.log('Classificação:', classificacao);
-            console.log('Pontos Totais:', pontosTotais);
-            console.log('Licenças Necessárias:', licencasNecessarias);
-            console.log('Próximo Nível:', proximoNivel);
-          });
-
-          function limparFormulario() {
-          // Reseta o formulário principal
-          document.getElementById('formulario').reset();
-
-          // Limpa os campos de cálculo
-          document.getElementById('totalLicencas').value = '';
-          document.getElementById('faltamLicencas').value = '';
-          document.getElementById('tipoLicencaMaisProxima').value = '';
-          document.getElementById('classificacaoMaisProxima').value = '';
-          document.getElementById('pontosTotaisMaisProxima').value = '';
-
-          document.getElementById('sugestaoTotalLicencas').value = '';
-          document.getElementById('sugestaoFaltamLicencas').value = '';
-          document.getElementById('sugestaoTipoLicenca').value = '';
-          document.getElementById('sugestaoClassificacao').value = '';
-          document.getElementById('sugestaoPontosTotais').value = '';
+    <title>Calculadora Google</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 50px;
         }
-        </script>
-      </main>
-      <footer></footer>
-    </div>
-  </body>
-</html>
+        label, h3 {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6">
+                <h3>Calculadora Google</h3>
+                <form id="formulario">
+                    <div class="input-field">
+                        <input type="text" id="nomeCliente">
+                        <label for="nomeCliente">Nome do Cliente</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="quantidadeFuncionarios">
+                        <label for="quantidadeFuncionarios">Quantidade de Funcionários</label>
+                    </div>
+                    <div class="input-field">
+                        <select id="tipoCliente">
+                            <option value="" disabled selected>Escolha uma opção</option>
+                            <option value="Expansion/Renewal">Expansion/Renewal</option>
+                            <option value="New Logo">New Logo</option>
+                        </select>
+                        <label for="tipoCliente">Tipo de Cliente</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="dominioCliente">
+                        <label for="dominioCliente">Dominio do Cliente</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="quantidadeServicos" oninput="atualizarCamposServico()">
+                        <label for="quantidadeServicos">Quantidade de serviços</label>
+                    </div>
+                    <div id="camposServicoContainer"></div>
+                    <div class="input-field">
+                        <input type="number" id="quantidadeTiposLicenca" oninput="atualizarCamposLicenca()">
+                        <label for="quantidadeTiposLicenca">Quantos tipos de licença há?</label>
+                    </div>
+                    <div id="camposLicencaContainer"></div>
+                    <button type="button" class="btn waves-effect waves-light" onclick="calcular()">Classificar</button>
+                </form>
+            </div>
 
+            <div class="col s12 m6">
+                <h3>Resultados</h3>
+                <form id="formularioSugestao">
+                    <div class="input-field">
+                        <input type="number" id="sugestaoFaltamLicencas" value = " " readonly>
+                        <label class="active" for="sugestaoFaltamLicencas" value>Total do Valor de Servicos</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="totalLicencas" value = " " readonly>
+                        <label class="active" for="totalLicencas">Total do Valor das licencas</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="totalDePontos" value = " " readonly>
+                        <label class="active" for="totalDePontos">Pontos totais</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <h3>Insira seus dados</h3>
+            <div class="col s12 m3">
+                <div class="input-field">
+                    <input type="text" id="informacoesDeal">
+                    <label for="informacoesDeal">Informações do deal</label>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="input-field">
+                    <input type="text" id="responsavel">
+                    <label for="responsavel">Responsável</label>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="input-field">
+                    <input type="text" id="prioridade">
+                    <label for="prioridade">Prioridade</label>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="input-field">
+                    <input type="text" id="empresa">
+                    <label for="empresa">Empresa</label>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+
+        function atualizarCamposServico() {
+            const quantidadeServicos = document.getElementById('quantidadeServicos').value;
+            const container = document.getElementById('camposServicoContainer');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < quantidadeServicos; i++) {
+                const campoServico = `
+                    <div class="input-field">
+                        <select id="tipoServico${i}">
+                            <option value="" disabled selected>Escolha uma opção</option>
+                            <option value="Unificação Painéis">Unificação Painéis</option>
+                            <option value="Treinamento presencial no cliente">Treinamento presencial no cliente</option>
+                            <option value="Treinamento presencial na Alest">Treinamento presencial na Alest</option>
+                            <option value="Importação de Legado">Importação de Legado</option>
+                            <option value="Sustentação ao Ambiente">Sustentação ao Ambiente</option>
+                            <option value="Registro de Domínio">Registro de Domínio</option>
+                            <option value="Hospedagem de Domínio">Hospedagem de Domínio</option>
+                            <option value="Implantação">Implantação</option>
+                            <option value="Serviços Gerenciados Alest Standard">Serviços Gerenciados Alest Standard</option>
+                            <option value="Serviços Gerenciados Alest Plus">Serviços Gerenciados Alest Plus</option>
+                        </select>
+                        <label for="tipoServico${i}">Tipo de serviço ${i + 1}</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="precoServicos${i}">
+                        <label for="precoServicos${i}">Preço</label>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', campoServico);
+            }
+
+            // Reinitialize the select elements
+            var elems = document.querySelectorAll('select');
+            M.FormSelect.init(elems);
+        }
+
+        function atualizarCamposLicenca() {
+            const quantidadeTiposLicenca = document.getElementById('quantidadeTiposLicenca').value;
+            const container = document.getElementById('camposLicencaContainer');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < quantidadeTiposLicenca; i++) {
+                const campoLicenca = `
+                    <div class="input-field">
+                        <select id="tipoLicenca${i}">
+                            <option value="" disabled selected>Escolha uma opção</option>
+                            <option value="Google Workspace Business Starter">Google Workspace Business Starter</option>
+                            <option value="Google Workspace Business Standard">Google Workspace Business Standard</option>
+                            <option value="Google Workspace Business Plus">Google Workspace Business Plus</option>
+                            <option value="Google Workspace Enterprise Essentials">Google Workspace Enterprise Essentials</option>
+                            <option value="Google Workspace Enterprise Essentials Plus">Google Workspace Enterprise Essentials Plus</option>
+                            <option value="Google Workspace Enterprise Starter">Google Workspace Enterprise Starter</option>
+                            <option value="Google Workspace Enterprise Standard">Google Workspace Enterprise Standard</option>
+                            <option value="Google Workspace Enterprise Plus">Google Workspace Enterprise Plus</option>
+                        </select>
+                        <label for="tipoLicenca${i}">Tipo de licença ${i + 1}</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="quantLicencas${i}">
+                        <label for="quantLicencas${i}">Quantidade</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="precoLicencas${i}">
+                        <label for="precoLicencas${i}">Preço</label>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', campoLicenca);
+            }
+
+            // Reinitialize the select elements
+            var elems = document.querySelectorAll('select');
+            M.FormSelect.init(elems);
+        }
+
+        function calcular() {
+            const uniPaineis = "Unificação Painéis";
+            const treinamentoNoCliente = "Treinamento presencial no cliente";
+            const treinamentoNaAlest = "Treinamento presencial na Alest";
+            const importLegado = "Importação de Legado";
+            const sustentAmbiente = "Sustentação ao Ambiente";
+            const registroDominio = "Registro de Domínio";
+            const hospDominio = "Hospedagem de Domínio";
+            const implantacao = "Implantação";
+            const servGerencStandard = "Serviços Gerenciados Alest Standard";
+            const servGerencPlus = "Serviços Gerenciados Alest Plus";
+
+            const googleWorkspaceStarter = "Google Workspace Business Starter";
+            const googleWorkspaceStandard = "Google Workspace Business Standard";
+            const googleWorkspacePlus = "Google Workspace Business Plus";
+            const googleEnterpriseEssentials = "Google Workspace Enterprise Essentials";
+            const googleEnterpriseEssentialsPlus = "Google Workspace Enterprise Essentials Plus";
+            const googleEnterpriseStarter = "Google Workspace Enterprise Starter";
+            const googleEnterpriseStandard = "Google Workspace Enterprise Standard";
+            const googleEnterprisePlus = "Google Workspace Enterprise Plus";
+
+            let valorTotalLicencas = 0;
+            let valorTotalServicos = 0;
+
+            const quantidadeServicos = document.getElementById('quantidadeServicos').value;
+            for (let i = 0; i < quantidadeServicos; i++) {
+                const tipoServico = document.getElementById(tipoServico${i}).value;
+                let precoServico = document.getElementById(precoServicos${i}).value;
+                precoServico = precoServico ? parseFloat(precoServico) : 0;
+
+                if (tipoServico === uniPaineis) {
+                    valorTotalServicos += precoServico || 1100;
+                } else if (tipoServico === treinamentoNoCliente) {
+                    valorTotalServicos += precoServico || 1200;
+                } else if (tipoServico === treinamentoNaAlest) {
+                    valorTotalServicos += precoServico || 1300;
+                } else if (tipoServico === importLegado) {
+                    valorTotalServicos += precoServico || 1400;
+                } else if (tipoServico === sustentAmbiente) {
+                    valorTotalServicos += precoServico || 1500;
+                } else if (tipoServico === registroDominio) {
+                    valorTotalServicos += precoServico || 1600;
+                } else if (tipoServico === hospDominio) {
+                    valorTotalServicos += (precoServico * 12) || (1700 * 12);
+                } else if (tipoServico === implantacao) {
+                    valorTotalServicos += precoServico || 1800;
+                } else if (tipoServico === servGerencStandard) {
+                    valorTotalServicos += (precoServico * 12) || (1900 * 12);
+                } else if (tipoServico === servGerencPlus) {
+                    valorTotalServicos += (precoServico * 12) || (2000 * 12);
+                }
+            }
+
+            const quantidadeTiposLicenca = document.getElementById('quantidadeTiposLicenca').value;
+            for (let i = 0; i < quantidadeTiposLicenca; i++) {
+                const tipoLicenca = document.getElementById(tipoLicenca${i}).value;
+                let precoLicenca = document.getElementById(precoLicencas${i}).value;
+                let quantLicenca = document.getElementById(quantLicencas${i}).value;
+                precoLicenca = precoLicenca ? parseFloat(precoLicenca) : 0;
+                quantLicenca = quantLicenca ? parseInt(quantLicenca) : 0;
+
+                if (tipoLicenca === googleWorkspaceStarter) {
+                    valorTotalLicencas += (precoLicenca * quantLicenca) || (10 * quantLicenca);
+                } else if (tipoLicenca === googleWorkspaceStandard) {
+                    valorTotalLicencas += (precoLicenca * quantLicenca) || (20 * quantLicenca);
+                } else if (tipoLicenca === googleWorkspacePlus) {
+                    valorTotalLicencas += (precoLicenca * quantLicenca) || (30 * quantLicenca);
+                } else if (tipoLicenca === googleEnterpriseEssentials) {
+                    valorTotalLicencas += (precoLicenca * quantLicenca) || (40 * quantLicenca);
+                } else if (tipoLicenca === googleEnterpriseEssentialsPlus) {
+                    valorTotalLicencas += (precoLicenca * quantLicenca) || (50 * quantLicenca);
+                } else if (tipoLicenca === googleEnterpriseStarter) {
+                    valorTotalLicencas += (precoLicenca * quantLicenca) || (60 * quantLicenca);
+                } else if (tipoLicenca === googleEnterpriseStandard) {
+                    valorTotalLicencas += (precoLicenca * quantLicenca) || (70 * quantLicenca);
+                } else if (tipoLicenca === googleEnterprisePlus) {
+                    valorTotalLicencas += (precoLicenca * quantLicenca) || (80 * quantLicenca);
+                }
+            }
+
+            let soma = valorTotalLicencas + valorTotalServicos;
+            let result;
+            if(soma<40000){
+                result = "Bronze";
+            }
+            else if(soma>=40000 && soma<80000){ 
+                result = "Prata";
+            }
+            else{
+                result = "Ouro";
+            }
+
+            document.getElementById('totalLicencas').value = valorTotalLicencas;
+            document.getElementById('sugestaoFaltamLicencas').value = valorTotalServicos;
+            document.getElementById('totalDePontos').value = result;
+        }
+    </script>
+</body>
+</html>
